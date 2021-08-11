@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QSettings>
 #include <QCloseEvent>
+#include <QMessageBox>
 #include <ranges>
 
 
@@ -19,6 +20,8 @@ CSV_to_SQLite::CSV_to_SQLite(QWidget* parent)
 	connect(ui.lineEditSeparator, SIGNAL(editingFinished()), this, SLOT(updateButtonOpen()));
 
 	loadSettings();
+	updateButtonSave();
+	updateButtonOpen();
 }
 
 void CSV_to_SQLite::closeEvent(QCloseEvent* event) {
@@ -90,6 +93,11 @@ void CSV_to_SQLite::saveClicked() {
 		QString path;
 		path = dialog.getFilePath();
 		writeSQL(getQTableWidget(), path);
+
+		QMessageBox::information(
+			this,
+			"Success",
+			"Created at:\n" + path);
 	}
 }
 
