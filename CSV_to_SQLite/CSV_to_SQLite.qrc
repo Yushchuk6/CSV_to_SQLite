@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="CSV_to_SQLite">
+    </qresource>
+</RCC>
